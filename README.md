@@ -1,5 +1,11 @@
 # adopteuntech
 
+Le but de ce projet et de trouver est à destination d'entreprises recruteuses et de candidats en recherche d'emploi dans la tech.
+
+
+## Modèle conceptuel de la base de données
+
+TODO à coller
 
 
 ## Getting started
