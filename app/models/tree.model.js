@@ -1,22 +1,19 @@
-const { DataTypes } = require('sequelize');
-
-const sequelize = require(/* votre instance Sequelize */);
-
-const Tree = sequelize.define('Tree', {
-  title: {
-    type: DataTypes.STRING(30),
-    allowNull: false,
-  },
-  description: {
-    type: DataTypes.TEXT,
-  },
-  created_at: {
-    type: DataTypes.DATE,
-    defaultValue: DataTypes.NOW,
-  },
-  updated_at: {
-    type: DataTypes.DATE,
-  },
-});
-
-module.exports = Tree;
+module.exports = (sequelize, Sequelize) => {
+  const Tree = sequelize.define('tree', {
+    title: {
+      type: Sequelize.STRING(30),
+      allowNull: false,
+    },
+    description: {
+      type: Sequelize.TEXT,
+    },
+    created_at: {
+      type: Sequelize.DATE,
+      defaultValue: Sequelize.NOW,
+    },
+    updated_at: {
+      type: Sequelize.DATE,
+    },
+  });
+  return tree;
+}

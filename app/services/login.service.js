@@ -34,15 +34,16 @@ module.exports = {
     const userInfos = await db.User.findByPk(userExist.id, {
       attributes:
       {
-        exclude: ['password'],
+        exclude: ['password', 'id_ent', 'id_role'],
       },
       include: [
         {
           model: db.Role,
-          attributes: ['label'],
+          attributes: ['label', 'id'],
         },
         {
           model: db.Ent,
+          attributes: ['id','name', "email", "siret"],
         },
       ],
     });

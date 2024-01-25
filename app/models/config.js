@@ -6,7 +6,7 @@ const sequelize = new Sequelize('open_adopte', 'open', 'MWyZNo@UoOqxG(mK', {
   port: 3306,
   logging: false,
   define: {
-    timestamps: true,
+    timestamps: false,
     createdAt: 'created_at',
     updatedAt: 'updated_at',
     deletedAt: 'deleted_at',

@@ -1,20 +1,20 @@
-const { DataTypes } = require('sequelize');
+const { sequelize, Sequelize } = require("./config");
 
-const sequelize = require(/* votre instance Sequelize */);
+module.exports = (sequelize, Sequelize) => {
+  const Degree = sequelize.define('degree', {
+    label: {
+      type: Sequelize.STRING(42),
+      allowNull: false,
+    },
+    level: {
+      type: Sequelize.INTEGER(1),
+      allowNull: false,
+    },
+    priority: {
+      type: Sequelize.INTEGER(1),
+      allowNull: false,
+    },
+  });
+  return Degree;
+}
 
-const Degree = sequelize.define('Degree', {
-  label: {
-    type: DataTypes.STRING(42),
-    allowNull: false,
-  },
-  level: {
-    type: DataTypes.INTEGER(1),
-    allowNull: false,
-  },
-  priority: {
-    type: DataTypes.INTEGER(1),
-    allowNull: false,
-  },
-});
-
-module.exports = Degree;
