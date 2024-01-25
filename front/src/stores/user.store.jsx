@@ -1,6 +1,6 @@
 import Cookies from "js-cookie";
 import { create } from "zustand";
-import { ApiRequest } from "../utls/ApiRequest";
+import { ApiRequest } from "../utils/ApiRequest";
 
 const useUserStore = create((set, get) => ({
 	user: null,
