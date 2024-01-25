@@ -1,6 +1,7 @@
 # adopteuntech
 
-Le but de ce projet et de trouver est à destination d'entreprises recruteuses et de candidats en recherche d'emploi dans la tech.
+Le but de ce projet est à destination d'entreprises recruteuses et de candidats en recherche d'emploi dans la tech.
+Le but est de trouver au travers de la définition d'un arbre de compétences, des candidats capables de répondre aux compétences attendues.
 
 
 ## Modèle conceptuel de la base de données
