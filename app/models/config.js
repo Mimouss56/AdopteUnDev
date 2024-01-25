@@ -25,8 +25,12 @@ db.sequelize = sequelize;
 db.User = require('./user/user.model')(sequelize, Sequelize);
 db.Ent = require('./ent/ent.model')(sequelize, Sequelize);
 db.Role = require('./role.model')(sequelize, Sequelize);
+db.Tree = require('./tree.model')(sequelize, Sequelize);
+db.Degree = require('./degree.model')(sequelize, Sequelize);
 
 db.User.belongsTo(db.Ent, { foreignKey: 'id_ent' });
 db.User.belongsTo(db.Role, { foreignKey: 'id_role' });
+
+
 
 module.exports = db;
