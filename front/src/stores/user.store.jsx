@@ -4,6 +4,7 @@ import { ApiRequest } from "../utils/ApiRequest";
 
 const useUserStore = create((set, get) => ({
 	user: null,
+	isAuthentified: false,
 	isLoading: true,
 
 	setUser: (user) => set({ user }),
@@ -14,8 +15,9 @@ const useUserStore = create((set, get) => ({
 		const data = response.data;
 
 		if (data.token) {
-			set({ user: data.user });
+			set({ user: data.user, isAuthentified: true });
 			Cookies.set("access_token", data.token);
+			
 			// navigate to dashboard
 			if (isLogin) {
 				set({ isLoading: false });
