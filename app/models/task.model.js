@@ -1,28 +1,26 @@
-const { DataTypes } = require('sequelize');
-
-const sequelize = require(/* votre instance Sequelize */);
-
-const Task = sequelize.define('Task', {
-  title: {
-    type: DataTypes.STRING(15),
-    allowNull: false,
-  },
-  rule: {
-    type: DataTypes.TEXT,
-  },
-  context: {
-    type: DataTypes.TEXT,
-  },
-  result: {
-    type: DataTypes.TEXT,
-  },
-  difficulty: {
-    type: DataTypes.INTEGER(1),
-    allowNull: false,
-  },
-  timer_limit: {
-    type: DataTypes.TIME,
-  },
-});
-
-module.exports = Task;
+const { sequelize, Sequelize } = require("./config");
+module.exports = (sequelize, Sequelize) => {
+  const Task = sequelize.define('task', {
+    title: {
+      type: Sequelize.STRING(15),
+      allowNull: false,
+    },
+    rule: {
+      type: Sequelize.TEXT,
+    },
+    context: {
+      type: Sequelize.TEXT,
+    },
+    result: {
+      type: Sequelize.TEXT,
+    },
+    difficulty: {
+      type: Sequelize.INTEGER(1),
+      allowNull: false,
+    },
+    timer_limit: {
+      type: Sequelize.TIME,
+    },
+  });
+  return Task;
+}

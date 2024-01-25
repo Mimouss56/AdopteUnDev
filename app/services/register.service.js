@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const { db } = require('../models/user/user.model');
+const db = require('../models/config');
 
 module.exports = {
 
@@ -26,6 +26,7 @@ module.exports = {
     }
     // eslint-disable-next-line no-param-reassign
     delete inputData.passwordConfirm;
+    // const newInput = {...inputData, }
 
     const hash = await bcrypt.hash(inputData.password, 10);
     try {
