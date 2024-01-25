@@ -1,16 +1,22 @@
 import React from "react";
-import {BrowserRoute, Routes, Route} from "react-router-dom";
-
+import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
+import Landing from "./pages/Landing";
+import Annonce from "./pages/Annonce";
+import Error from "./pages/Error";
 
 function App() {
 
   
 	return (
-    <BrowserRoute>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Landing />}></Route>
+        <Route path="/offres/:id" element={<Annonce />}></Route>
+        {/* Redirect to Error page*/}
+        <Route path="/error" element={<Error />}></Route>
+        <Route path="*" element={<Navigate to="/error" />}></Route>
       </Routes>
-    </BrowserRoute>
+    </BrowserRouter>
   )
 }
 
