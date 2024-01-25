@@ -50,5 +50,21 @@
                 "path": "/"
             }
         ]
+    },
+
+    {
+        "CategorieName": "Compétences",
+        "role": "RH",
+        "sub": [
+            {
+                "title": "Liste des arbres de compétences",
+                "path": "/"
+            },
+            {
+                "title": "Liste des compétences",
+                "path": "/"
+            }
+            
+        ]
     }
 ]

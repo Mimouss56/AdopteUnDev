@@ -4,13 +4,26 @@ import Annonce from "./pages/Annonce";
 import AuthPage from "./pages/AuthPage";
 import Error from "./pages/Error";
 import Landing from "./pages/Landing";
+import PrivateRoute from "./context/PrivateRoute";
 
 function App() {
+	c;
 	return (
 		<BrowserRouter>
 			<Routes>
 				<Route path="/" element={<Landing />}></Route>
 				<Route path="/auth" element={<AuthPage />}></Route>
+				<Route
+					path="/dashboard"
+					element={
+						<PrivateRoute>
+							<Routes>
+								<Route index element={<Dashboard />} />
+								<Route path="/" element={<Dashboard />} />
+							</Routes>
+						</PrivateRoute>
+					}
+				></Route>
 				<Route path="/offres/:id" element={<Annonce />}></Route>
 				{/* Redirect to Error page*/}
 				<Route path="/error" element={<Error />}></Route>
