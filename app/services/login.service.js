@@ -1,19 +1,28 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { db } = require('../models/config');
+const db = require('../models/config');
 
 // const user = db.User;
 
 module.exports = {
 
   async login(email, password) {
-    const userExist = await db.User.findOne({ where: { email } });
+    const userExist = await db.User.findOne({
+      where: { email },
+      include: [
+        {
+          model: db.Role,
+          attributes: ['label'],
+        },
+      ],
+    });
     if (!userExist) {
       return {
         code: 403,
         message: 'Email or password is incorrect',
       };
     }
+
     const passwordMatch = await bcrypt.compare(password, userExist.password);
     if (!passwordMatch) {
       return {
@@ -22,6 +31,21 @@ module.exports = {
       };
     }
     const { username } = userExist;
+    const userInfos = await db.User.findByPk(userExist.id, {
+      attributes:
+      {
+        exclude: ['password'],
+      },
+      include: [
+        {
+          model: db.Role,
+          attributes: ['label'],
+        },
+        {
+          model: db.Ent,
+        },
+      ],
+    });
     let message = `Connecté sous ${username} !`;
     // si delete_at est rempli on mets a jour la date de suppression par null
     if (userExist.deleted_at) {
@@ -34,16 +58,12 @@ module.exports = {
     }, process.env.JWT_SECRET, {
       expiresIn: 24 * 60 * 60, // 24 hours
     });
-    // Mettre à jour la date de la dernière connexion
-    await db.User.update(userExist.id, {
-      last_visited: new Date(),
-      delete_at: null,
-    });
-    // Return user && token
+
     const userLogged = {
-      id: userExist.id,
+      id: userInfos.id,
       sessionToken: token,
       message,
+      data: userInfos,
 
     };
     return userLogged;
