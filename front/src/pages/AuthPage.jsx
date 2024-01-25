@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import Button from "../components/UI/Button";
 import Card from "../components/UI/Card";
 import Input from "../components/UI/Input";
+import useUserStore from "../stores/user.store";
 
 const AuthPage = () => {
 	const [signIn, setSignIn] = useState(false);
 	const [isEnterprise, setIsEnterprise] = useState(false);
+
+	const store = useUserStore();
 
 	const [error, setError] = useState({
 		firstName: "",
@@ -45,7 +48,7 @@ const AuthPage = () => {
 				delete user.siret;
 				delete user.role;
 			}
-
+			store.register(user);
 			console.log(user);
 		}
 	};
@@ -58,7 +61,7 @@ const AuthPage = () => {
 		delete user.siret;
 		delete user.role;
 		if (validateForm()) {
-			console.log(user);
+			store.login(user.email, user.password);
 		}
 	};
 
