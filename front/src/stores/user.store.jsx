@@ -7,9 +7,10 @@ const useUserStore = create((set, get) => ({
 	isAuthentified: false,
 	isLoading: true,
 
-	setUser: (user) => set({ user }),
-
-	logout: () => set({ user: null }),
+	logout: () => {
+		set({ user: null });
+		Cookies.remove("access_token");
+	},
 
 	handleApiResponse: (response, isLogin = false) => {
 		const data = response.data;
@@ -25,6 +26,9 @@ const useUserStore = create((set, get) => ({
 			return true;
 		} else {
 			// send error toast
+			console.error(
+				" je n'est pas recu de token ! Vous ****** quoi les back ?!?"
+			);
 			return false;
 		}
 	},
