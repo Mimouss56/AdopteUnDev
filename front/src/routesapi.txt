@@ -1,0 +1,58 @@
+
+    # REGION users
+    
+    POST /users/register - register a new user
+    send {
+        "type": "user", || "rh" || "tech"
+        "username": "username",
+        "email": "email",
+        "password": "password"
+        "confirmPassword": "password"
+        "siret": "siret" || null
+    }
+    return {
+        "token": "token",
+        "user": {
+            "id": "id",
+            "username": "username",
+            "email": "email",
+            "type": "user" || "rh" || "tech"
+        }
+    }
+    POST /users/login - login a user
+    send {
+        "username": "username",
+        "password": "password"
+    }
+    return {
+        "token": "token",
+        "user": {
+            "id": "id",
+            "username": "username",
+            "email": "email",
+            "type": "user" || "rh" || "tech"
+        }
+    }
+
+
+    GET /users/me - get user profile
+    return {
+        "token": "token",
+        "user": {
+            "id": "id",
+            "username": "username",
+            "email": "email",
+            "type": "user" || "rh" || "tech"
+        }
+    }
+
+
+
+
+
+    # ENDREGION
+
+
+
+
+

@@ -1,0 +1,132 @@
+[
+    {
+        "CategorieName": "Général",
+        "role": "tech",
+        "sub": [
+            {
+                "title": "Liste des demandeurs d'emploi",
+                "path": "/"
+            },
+            {
+                "title": "Annuaire des entreprises",
+                "path": "/"
+            },
+            {
+                "title": "Liste des offres d'emploi",
+                "path": "/"
+            }
+        ]
+    },
+    {
+        "CategorieName": "Entreprises",
+        "role": "tech",
+        "sub": [
+            {
+                "title": "Gestion des entreprises",
+                "path": "/"
+            }
+        ]
+    },
+    {
+        "CategorieName": "Général",
+        "role": "ft",
+        "sub": [
+            {
+                "title": "Liste des demandeurs d'emploi",
+                "path": "/"
+            },
+            {
+                "title": "Annuaire des entreprises",
+                "path": "/"
+            },
+            {
+                "title": "Liste des offres d'emploi",
+                "path": "/"
+            }
+        ]
+    },
+    {
+        "CategorieName": "Entreprises",
+        "role": "ft",
+        "sub": [
+            {
+                "title": "Gestion des entreprises",
+                "path": "/"
+            }
+        ]
+    },
+    {
+        "CategorieName": "Compétences",
+        "role": "ft",
+        "sub": [
+            {
+                "title": "Liste des arbres de compétences",
+                "path": "/"
+            },
+            {
+                "title": "Liste des compétences",
+                "path": "/"
+            },
+            {
+                "title": "Liste des tâches",
+                "path": "/"
+            }
+        ]
+    },
+    {
+        "CategorieName": "Compétences",
+        "role": "rh",
+        "sub": [
+            {
+                "title": "Liste des arbres de compétences",
+                "path": "/"
+            },
+            {
+                "title": "Liste des compétences",
+                "path": "/"
+            },
+            {
+                "title": "Liste des tâches",
+                "path": "/"
+            }
+        ]
+    },
+    {
+        "CategorieName": "Général",
+        "role": "rh",
+        "sub": [
+            {
+                "title": "Gestion de l'entreprise",
+                "path": "/"
+            },
+            {
+                "title": "Gestion des offres",
+                "path": "/"
+            }
+        ]
+    },
+    {
+        "CategorieName": "Postulants",
+        "role": "rh",
+        "sub": [
+            {
+                "title": "Gestion des postulants",
+                "path": "/"
+            }
+        ]
+    },
+    {
+        "CategorieName": "Compétences",
+        "role": "rh",
+        "sub": [
+            {
+                "title": "Liste des arbres de compétences",
+                "path": "/"
+            },
+            {
+                "title": "Liste des compétences",
+                "path": "/"
+            }
+        ]
+    }
+]
