@@ -1,6 +1,8 @@
 import React from "react";
 import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
 import Landing from "./pages/Landing";
+import Annonce from "./pages/Annonce";
+import Error from "./pages/Error";
 
 function App() {
 

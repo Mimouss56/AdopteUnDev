@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Navigation = () => {
+const Error = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const Navigation = () => {
     );
 };
 
-export default Navigation;
+export default Error;
