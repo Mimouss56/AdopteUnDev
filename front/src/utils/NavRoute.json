@@ -1,0 +1,27 @@
+[
+    {
+        "CategorieName": "Général",
+        "role": "FT",
+        "sub": [
+            {
+                "title": "Liste des demandeurs d'emploi",
+                "path": "/"
+            },
+            {
+                "title": "Annuaire des entreprises",
+                "path": "/"
+            },
+            {}
+        ]
+    },
+    {
+        "CategorieName": "Categorie 2",
+        "role": "RH",
+        "sub": [
+            {
+                "title": "Route 1",
+                "path": "http://www.google.com"
+            }
+        ]
+    }
+]

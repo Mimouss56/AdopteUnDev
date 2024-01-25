@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 import useUserStore from "../stores/user.store";
+import DataRoute from "../utils/NavRoute.json";
 import Categories from "./FT/nav/Categories";
 
 const Navigation = () => {
@@ -9,28 +10,29 @@ const Navigation = () => {
 		store.user;
 	});
 	const renderNav = () => {
-		// if (user.role.label === "FT") {
 		return (
-			<Categories title="Général">
-				<li className="flex w-full text-center">
-					<NavLink to="/" className="w-full hover:underline">
-						Liste des demandeurs d'emploi
-					</NavLink>
-				</li>
-				<li className="flex w-full text-center">
-					<NavLink to="/" className="w-full hover:underline">
-						Annuaire des entreprises
-					</NavLink>
-				</li>
-				<li className="flex w-full text-center">
-					<NavLink to="/" className="w-full hover:underline">
-						Les offres d'emploi
-					</NavLink>
-				</li>
-			</Categories>
+			<>
+				{DataRoute.map((route) => (
+					<Categories key={route.title} title={route.title}>
+						{route.sub.map((sub) => (
+							<li
+								key={sub.title}
+								className="flex w-full text-center"
+							>
+								<NavLink
+									to={sub.path}
+									className="w-full hover:underline"
+								>
+									{sub.title}
+								</NavLink>
+							</li>
+						))}
+					</Categories>
+				))}
+			</>
 		);
-		// }
 	};
+
 	return (
 		<aside className="w-60 h-full flex flex-col justify-between bg-slate-200 p-2">
 			<button className="p-2 w-full h-[50px] bg-white rounded-lg hover:shadow-hover-inset">

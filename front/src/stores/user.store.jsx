@@ -17,7 +17,7 @@ const useUserStore = create((set, get) => ({
 		if (data.token) {
 			set({ user: data.user, isAuthentified: true });
 			Cookies.set("access_token", data.token);
-			
+
 			// navigate to dashboard
 			if (isLogin) {
 				set({ isLoading: false });
