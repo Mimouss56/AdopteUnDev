@@ -11,16 +11,43 @@
                 "title": "Annuaire des entreprises",
                 "path": "/"
             },
-            {}
+            {
+                "title": "Liste des offres d'emploi",
+                "path": "/"
+            }
         ]
     },
     {
-        "CategorieName": "Categorie 2",
+        "CategorieName": "Entreprises",
+        "role": "FT",
+        "sub": [
+            {
+                "title": "Gestion des entreprises",
+                "path": "/"
+            }
+        ]
+    },
+    {
+        "CategorieName": "Général",
         "role": "RH",
         "sub": [
             {
-                "title": "Route 1",
-                "path": "http://www.google.com"
+                "title": "Gestion de l'entreprise",
+                "path": "/"
+            },
+            {
+                "title": "Gestion des offres",
+                "path": "/"
+            }
+        ]
+    },
+    {
+        "CategorieName": "Postulants",
+        "role": "RH",
+        "sub": [
+            {
+                "title": "Gestion des postulants",
+                "path": "/"
             }
         ]
     }
