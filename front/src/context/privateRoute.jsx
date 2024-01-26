@@ -12,7 +12,8 @@ const privateRoute = ({ children }) => {
 			<Navigate to="/auth" />;
 		}
 	}, [store.isLoading]);
-	return <>{children}</>;
+
+	return children;
 };
 
 export default privateRoute;
