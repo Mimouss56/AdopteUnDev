@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import PrivateRoute from "./context/privateRoute";
-import Annonce from "./pages/Annonce";
 import AuthPage from "./pages/AuthPage";
 import Error from "./pages/Error";
 import Landing from "./pages/Landing";
@@ -24,7 +23,6 @@ function App() {
 						</PrivateRoute>
 					}
 				/>
-				<Route path="/offres/:id" element={<Annonce />}></Route>
 				{/* Redirect to Error page*/}
 				<Route path="/error" element={<Error />}></Route>
 				<Route path="*" element={<Navigate to="/error" />}></Route>

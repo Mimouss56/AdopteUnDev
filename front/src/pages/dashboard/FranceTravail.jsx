@@ -76,18 +76,19 @@ const FranceTravail = ({ role }) => {
 					<Card className="h-full w-full">
 						<div className=" flex flex-col justify-center items-center w-full gap-4 p-4">
 							<h2 className="text-xl font-semibold">
-								Gestion des arbres de competence
+								Gestion des arbres de compétences
 							</h2>
 							<div className="flex gap-4 w-full">
 								<div className="bg-slate-200 rounded-lg p-4 w-full flex flex-col justify-start items-center">
 									<h3 className="text-xl font-semibold">
-										Arbre de FranceTravail
+										Arbres de compétences de FranceTravail
 									</h3>
 								</div>
 								<div className="bg-slate-200 rounded-lg p-4 w-full flex flex-col justify-start items-center">
 									<div className="flex justify-between items-center w-full">
 										<h3 className="text-xl font-semibold">
-											Arbre de votre entreprise
+											Arbres de compétences des
+											entreprises
 										</h3>
 										<Button onClick={() => {}}>
 											Créer un arbre
