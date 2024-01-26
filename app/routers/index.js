@@ -15,7 +15,7 @@ router.use('/tree', treeRouter);
 router.use('/degree', degreeRouter);
 router.use('/offer', offerRouter);
 router.use('/task', taskRouter);
-router.use('/me', require('./me.router'));
+router.use('/me', require('./me'));
 
 router.get('/*', (req, res) => {
   // Modification ici pour prendre en compte les sous-dossiers
