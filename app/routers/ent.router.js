@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const entController = require('../controllers/ent.controller');
-
-router.get('/ent', entController.allEnt);
+const { loggedAs } = require('../middlewares/auth.middleware');
+router.get('/ent',loggedAs, entController.allEnt);
 router.get('/ent/:id', entController.oneEnt);
 
 module.exports = router;

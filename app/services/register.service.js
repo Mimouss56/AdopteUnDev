@@ -46,6 +46,7 @@ module.exports = {
     const userExist = await db.User.findOne({ where: { email } });
     const usernameExist = await db.User.findOne({ where: { username } });
     return {
+      message: "utilisateur crée!",
       emailExist: userExist,
       usernameExist,
     };

@@ -1,22 +1,19 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require(/* votre instance Sequelize */);
+module.exports = (sequelize, Sequelize) => {
+  const Offer = sequelize.define('offer', {
+    title: {
+      type: Sequelize.STRING(42),
+      allowNull: false,
+    },
+    description: {
+      type: Sequelize.TEXT,
+    },
+    wage: {
+      type: Sequelize.INTEGER(8),
+    },
+    type: {
+      type: Sequelize.STRING(10),
+    },
+  });
+  return Offer;
+}
 
-const Offer = sequelize.define('Offer', {
-  title: {
-    type: DataTypes.STRING(42),
-    allowNull: false,
-  },
-  description: {
-    type: DataTypes.TEXT,
-  },
-  wage: {
-    type: DataTypes.INTEGER(8),
-  },
-  type: {
-    type: DataTypes.STRING(10),
-  },
-});
-
-Offer.belongsTo(Ent, { foreignKey: 'id_ent' });
-
-module.exports = Offer;

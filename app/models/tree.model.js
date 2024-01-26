@@ -15,5 +15,5 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.DATE,
     },
   });
-  return tree;
+  return Tree;
 }
