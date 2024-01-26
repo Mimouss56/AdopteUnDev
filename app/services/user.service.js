@@ -2,9 +2,6 @@ const db = require('../models/config');
 
 module.exports = {
 
-  //TODO : get all user with role applicant
-  //get all applicant information from an id list
-
   async getData(id) {
     const userByID = await db.User.findByPk(id, { where: { id_ent: null } });
     if (!userByID) {
