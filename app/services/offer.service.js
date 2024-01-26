@@ -16,7 +16,17 @@ module.exports = {
   },
 
   async getAllOffer() {
-    const alloffers = await db.Offer.findAll();
+    const alloffers = await db.Offer.findAll({
+      include: [
+        {
+          model: db.Ent,
+          attributes: ['name', 'siret', 'email']
+        }, {
+          model: db.Tree,
+          include: [db.Degree]
+        }
+      ]
+    });
     if (!alloffers) {
       return {
         code: 404,
