@@ -1,5 +1,7 @@
 const express = require('express');
 const expressSession = require('express-session');
+const expressJSDocSwagger = require('express-jsdoc-swagger');
+const optionsSwagger = require('./swagger/option');
 require('dotenv').config();
 const db = require('./models/config');
 
@@ -52,7 +54,8 @@ app.use((req, res, next) => {
 // Middleware pour le décodage des requêtes body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+// Middleware pour Swagger
+expressJSDocSwagger(app)(optionsSwagger);
 // Middleware Router
 app.use(router);
 
