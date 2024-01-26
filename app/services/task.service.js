@@ -1,29 +1,19 @@
 const bcrypt = require('bcrypt');
-const { user } = require('../models/user/user.model');
-const roleService = require('./role.service');
+const { task } = require('../models/task.model');
+// const roleService = require('./role.service');
 
 module.exports = {
 
-  //TODO : get all user with role applicant
-  //get all applicant information from an id list
+  //TODO : get one / get all
 
-  async getData(id) {
-    const userByID = await user.findByPk(id);
-    if (!userByID) {
+  async getTask(id) {
+    const taskByID = await task.findByPk(id);
+    if (!taskByID) {
       return {
         code: 404,
         message: 'User not found',
       };
     }
-    const role = await roleService.getData(userByID.role_id);
-
-    const userDetails = {
-      ...userByID,
-      role,
-    };
-    // delete userDetails.github_id;
-    delete userDetails.password;
-    delete userDetails.role_id;
     return userDetails;
   },
 
