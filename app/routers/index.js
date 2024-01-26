@@ -10,12 +10,13 @@ const router = express.Router();
 router.use('/auth', require('./auth.router'));
 
 router.use('/applicant', require('./applicant.router'));
+
 router.use('/ent', entRouter);
 router.use('/tree', treeRouter);
 router.use('/degree', degreeRouter);
 router.use('/offer', offerRouter);
 router.use('/task', taskRouter);
-router.use('/me', require('./me'));
+router.use('/me', require('./me.router'));
 
 router.get('/*', (req, res) => {
   // Modification ici pour prendre en compte les sous-dossiers
