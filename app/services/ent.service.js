@@ -1,13 +1,31 @@
 const { ent } = require('../models/index.mapper');
 
 module.exports = {
-  async allEnt() {
-    const getAll = await ent.findAll();
-    return getAll;
+  async getData(id) {
+    const entByID = await ent.findByPk(id);
+    if (!entByID) {
+      return {
+        code: 404,
+        message: 'Ent not found',
+      };
+    }
+    const entDetails = {
+      id: entByID.id,
+      name: entByID.name,
+      siret: entByID.siret,
+
+    };
+    return entDetails;
   },
 
-  async oneEnt(id) {
-    const getOne = await ent.findByPk(id);
-    return getOne;
+  async getAll() {
+    const getAll = await ent.findAll();
+    const ents = await Promise.all(
+      getAll.map(async (entInfo) => {
+        const oneEnt = await this.getData(entInfo.id);
+        return oneEnt;
+      }),
+    );
+    return ents;
   },
 };

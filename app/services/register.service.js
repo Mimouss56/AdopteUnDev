@@ -1,10 +1,11 @@
 const bcrypt = require('bcrypt');
 const { user } = require('../models/index.mapper');
+const userService = require('./user.service');
 
 module.exports = {
 
   async register(inputData) {
-    const userExist = await this.checkUserExist(inputData.email, inputData.username);
+    const userExist = await userService.checkUserExist(inputData.email, inputData.username);
 
     if (userExist.emailExist) {
       return {
@@ -42,12 +43,5 @@ module.exports = {
       };
     }
   },
-  async checkUserExist(email, username) {
-    const userExist = await user.findOne({ where: { email } });
-    const usernameExist = await user.findOne({ where: { username } });
-    return {
-      emailExist: userExist,
-      usernameExist,
-    };
-  },
+
 };

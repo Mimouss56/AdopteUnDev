@@ -19,10 +19,10 @@ const promisePool = pool.promise();
 promisePool
   .getConnection()
   .then(() => {
-    logger.info('Connecté à la base de données');
+    logger.log('✅ CONNECTÉ À LA DB');
   })
   .catch((error) => {
-    logger.error(`Erreur de connexion à la base de données : ${error.message}`);
+    logger.log('❌ ERREUR DE CONNEXION À LA DB', error);
   });
 
 // On exporte le pool de promesses

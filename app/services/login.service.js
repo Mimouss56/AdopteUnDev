@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { user, role, ent } = require('../models/index.mapper');
-const userServices = require('./user.service');
+const { user } = require('../models/index.mapper');
+const userService = require('./user.service');
 
 module.exports = {
 
@@ -22,12 +22,7 @@ module.exports = {
       };
     }
     const { username } = userExist;
-    const userInfos = await user.findByPk(userExist.id);
-    const userRole = await role.findByPk(userExist.id_role);
-    const userEnt = await ent.findByPk(userExist.id_ent);
-    console.log(userEnt);
-
-    const userReturn = await userServices.getData(userExist.id);
+    const userInfos = await userService.getData(userExist.id);
 
     let message = `Connecté sous ${username} !`;
     // si delete_at est rempli on mets a jour la date de suppression par null
@@ -46,7 +41,7 @@ module.exports = {
       id: userInfos.id,
       sessionToken: token,
       message,
-      data: userReturn,
+      data: userInfos,
 
     };
     return userLogged;
