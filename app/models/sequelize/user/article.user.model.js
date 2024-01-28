@@ -1,4 +1,5 @@
 const { DataTypes } = require('sequelize');
+
 const sequelize = require(/* votre instance Sequelize */);
 
 const Article = sequelize.define('Article', {

@@ -3,7 +3,6 @@ const expressSession = require('express-session');
 const expressJSDocSwagger = require('express-jsdoc-swagger');
 const optionsSwagger = require('./swagger/option');
 require('dotenv').config();
-const db = require('./models/config');
 
 const app = express();
 const router = require('./routers/index');
@@ -20,21 +19,6 @@ app.use(
     },
   }),
 );
-const databaseConection = async () => {
-  try {
-    await db.sequelize.authenticate();
-    console.log('Connected!');
-  } catch (error) {
-    console.error('Unable to connect', error);
-  }
-};
-
-databaseConection();
-
-db.sequelize
-  .sync({ force: false })
-  .then(() => console.log('database update'))
-  .catch((error) => console.log('not working', error));
 
 // Middleware pour permettre les requêtes CORS
 app.use((req, res, next) => {

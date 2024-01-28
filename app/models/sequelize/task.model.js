@@ -1,4 +1,5 @@
-const { sequelize, Sequelize } = require("./config");
+const { sequelize, Sequelize } = require('./config');
+
 module.exports = (sequelize, Sequelize) => {
   const Task = sequelize.define('task', {
     title: {
@@ -23,4 +24,4 @@ module.exports = (sequelize, Sequelize) => {
     },
   });
   return Task;
-}
+};

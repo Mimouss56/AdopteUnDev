@@ -1,22 +1,13 @@
-const db = require('../models/config');
+const { ent } = require('../models/index.mapper');
 
-module.exports = { 
-    async allEnt() {
-        const getAll = await db.Ent.findAll({
-            attributes: {
-                exclude: ['token'],
-            }
-        }
-        );
-        return getAll;
-    },
+module.exports = {
+  async allEnt() {
+    const getAll = await ent.findAll();
+    return getAll;
+  },
 
-    async oneEnt(id) {
-        const getOne = await db.Ent.findByPk(id, {
-            attributes: {
-                exclude: ['token'],
-            }
-        });
-        return getOne;
-    }
-}
+  async oneEnt(id) {
+    const getOne = await ent.findByPk(id);
+    return getOne;
+  },
+};

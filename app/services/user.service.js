@@ -1,12 +1,12 @@
-const db = require('../models/config');
+const { user } = require('../models/index.mapper');
 
 module.exports = {
 
-  //TODO : get all user with role applicant
-  //get all applicant information from an id list
+  // TODO : get all user with role applicant
+  // get all applicant information from an id list
 
   async getData(id) {
-    const userByID = await db.User.findByPk(id, { where: { id_ent: null } });
+    const userByID = await user.findByPk(id, { where: { id_ent: null } });
     if (!userByID) {
       return {
         code: 404,
@@ -23,7 +23,7 @@ module.exports = {
   },
 
   async getAll() {
-    const allUsers = await db.User.findAll({ where: { id_ent: null }});
+    const allUsers = await user.findAll({ where: { id_ent: null } });
     if (!allUsers) {
       return {
         code: 404,

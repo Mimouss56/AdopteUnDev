@@ -1,4 +1,4 @@
-const { sequelize, Sequelize } = require("./config");
+const { sequelize, Sequelize } = require('./config');
 
 module.exports = (sequelize, Sequelize) => {
   const Degree = sequelize.define('degree', {
@@ -16,5 +16,4 @@ module.exports = (sequelize, Sequelize) => {
     },
   });
   return Degree;
-}
-
+};

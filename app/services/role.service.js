@@ -1,4 +1,4 @@
-const { role } = require('../models/role.model');
+const { role } = require('../models/index.mapper');
 
 module.exports = {
   async getAll() {

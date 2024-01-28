@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const db = require('../models/config');
+const { user } = require('../models/index.mapper');
 
 module.exports = {
 
@@ -30,7 +30,7 @@ module.exports = {
 
     const hash = await bcrypt.hash(inputData.password, 10);
     try {
-      const data = await db.User.create({
+      const data = await user.create({
         ...inputData,
         password: hash,
       });
@@ -43,8 +43,8 @@ module.exports = {
     }
   },
   async checkUserExist(email, username) {
-    const userExist = await db.User.findOne({ where: { email } });
-    const usernameExist = await db.User.findOne({ where: { username } });
+    const userExist = await user.findOne({ where: { email } });
+    const usernameExist = await user.findOne({ where: { username } });
     return {
       emailExist: userExist,
       usernameExist,
