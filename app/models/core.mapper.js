@@ -28,14 +28,14 @@ module.exports = class CoreDatamapper {
       const values = [];
 
       Object.entries(object.where).forEach(([prop, value]) => {
-        fields.push(`"${prop}"`);
+        fields.push(`${prop}`);
         placeholders.push('?');
         values.push(value);
       });
       const where = `WHERE ${fields} = ${placeholders}`;
       const sql = `SELECT * FROM \`${this.tableName}\` ${where}`;
-      const result = await this.client.query(sql, values);
-      return result.rows;
+      const [rows] = await this.client.query(sql, values);
+      return rows;
     }
 
     // Include INCLUDE OBJECT dasn requete puis return
@@ -50,13 +50,13 @@ module.exports = class CoreDatamapper {
         values.push(value);
       });
       const where = `WHERE ${fields} = ${placeholders}`;
-      const result = await this.client.query(`SELECT * FROM \`${this.tableName}\` ${where}`, values);
-      return result.rows;
+      const [rows] = await this.client.query(`SELECT * FROM \`${this.tableName}\` ${where}`, values);
+      return rows;
     }
 
-    const result = await this.client.query(`SELECT * FROM \`${this.tableName}\``);
+    const [rows] = await this.client.query(`SELECT * FROM \`${this.tableName}\``);
 
-    return result.rows;
+    return rows;
   }
 
   /**
@@ -115,10 +115,8 @@ module.exports = class CoreDatamapper {
           `,
       values,
     };
-    const result = await this.client.query(preparedQuery);
-    const row = result.rows[0];
-
-    return row;
+    const [rows] = await this.client.query(preparedQuery);
+    return rows;
   }
 
   /**
@@ -160,13 +158,12 @@ module.exports = class CoreDatamapper {
       values,
     };
 
-    const result = await this.client.query(preparedQuery);
-    const row = result.rows[0];
-    return row;
+    const [rows] = await this.client.query(preparedQuery);
+    return rows[0];
   }
 
   async delete(id) {
-    const result = await this.client.query(`DELETE FROM \`${this.tableName}\` WHERE id = ?`, [id]);
-    return result.rowCount;
+    const [rows] = await this.client.query(`DELETE FROM \`${this.tableName}\` WHERE id = ?`, [id]);
+    return rows.rowCount;
   }
 };

@@ -3,6 +3,22 @@ const roleService = require('./role.service');
 const entService = require('./ent.service');
 const infoUserService = require('./infoUser.service');
 
+const generateByDefault = async (data) => {
+  const {
+    password, id_role: idRole, id_ent: idEnt, ...rest
+  } = data;
+  const infoComplement = await infoUserService.getData(rest.id);
+  const role = await roleService.getData(idRole);
+  const ent = await entService.getData(idEnt);
+
+  return {
+    ...rest,
+    infoComplement,
+    role,
+    ent,
+  };
+};
+
 module.exports = {
 
   // TODO : get all user with role applicant
@@ -16,19 +32,9 @@ module.exports = {
         message: 'User not found',
       };
     }
-    const infoComplement = await infoUserService.getData(userByID.id);
-    const role = await roleService.getData(userByID.id_role);
-    const ent = await entService.getData(userByID.id_ent);
 
-    const userDetails = {
-      ...userByID,
-      ...infoComplement,
-      role,
-      ent,
-    };
-    delete userDetails.password;
-    delete userDetails.role_id;
-    return userByID;
+    const userDetails = generateByDefault(userByID);
+    return userDetails;
   },
 
   async getAll() {

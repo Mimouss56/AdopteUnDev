@@ -1,5 +1,11 @@
 const { ent } = require('../models/index.mapper');
 
+const generateByDefault = (data) => ({
+  id: data.id,
+  name: data.name,
+  siret: data.siret,
+});
+
 module.exports = {
   async getData(id) {
     const entByID = await ent.findByPk(id);
@@ -9,12 +15,8 @@ module.exports = {
         message: 'Ent not found',
       };
     }
-    const entDetails = {
-      id: entByID.id,
-      name: entByID.name,
-      siret: entByID.siret,
+    const entDetails = generateByDefault(entByID);
 
-    };
     return entDetails;
   },
 
@@ -22,8 +24,8 @@ module.exports = {
     const getAll = await ent.findAll();
     const ents = await Promise.all(
       getAll.map(async (entInfo) => {
-        const oneEnt = await this.getData(entInfo.id);
-        return oneEnt;
+        const entDetails = generateByDefault(entInfo);
+        return entDetails;
       }),
     );
     return ents;
