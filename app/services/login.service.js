@@ -24,11 +24,7 @@ module.exports = {
     const { username } = userExist;
     const userInfos = await userService.getData(userExist.id);
 
-    let message = `Connecté sous ${username} !`;
-    // si delete_at est rempli on mets a jour la date de suppression par null
-    if (userExist.deleted_at) {
-      message = `Bon retour parmis nous ${username} !`;
-    }
+    const message = userExist.deleted_at ? `Bon retour parmis nous ${username} !` : `Connecté sous ${username} !`;
 
     // Création d'un token
     const token = jwt.sign({
