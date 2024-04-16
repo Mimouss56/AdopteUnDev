@@ -6,6 +6,8 @@ import Error from "./pages/Error";
 import Landing from "./pages/Landing";
 import FranceTravail from "./pages/dashboard/FranceTravail";
 import Tech from "./pages/dashboard/Tech";
+import RH from "./pages/dashboard/RH";
+import Dashboard from "./pages/dashboard/Dashboard";
 
 import useUserStore from "./stores/user.store";
 
@@ -33,9 +35,10 @@ function App() {
 
 const DashboardRoutes = () => {
 	const user = useUserStore((state) => state.user);
+	console.log(user);
 	return (
 		<Routes>
-			{/* 
+			
 			{user.role.label === "rh" ? (
 				<Route path="/rh" element={<RH />} />
 			) : user.role.label === "tech" ? (
@@ -44,8 +47,11 @@ const DashboardRoutes = () => {
 				<Route path="/francetravail" element={<FranceTravail />} />
 			) : (
 				<Route path="/candidat" element={<Dashboard />} />
-			)}*/}
-			<Route path="/tech" element={<Tech role="tech" />} />
+			)}
+			<Route 
+				path="/tech" 
+				element={<Tech role="tech" />} 
+			/>
 			<Route
 				path="/francetravail"
 				element={<FranceTravail role="ft" />}

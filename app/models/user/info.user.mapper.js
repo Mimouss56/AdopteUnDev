@@ -17,6 +17,6 @@ module.exports = class Info extends CoreDatamapper {
     };
     const result = await this.client.query(preparedQuery);
     const { id_user: ref, ...rest } = result;
-    return rest;
+    return rest.rows[0];
   }
 };

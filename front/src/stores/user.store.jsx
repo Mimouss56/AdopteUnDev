@@ -14,9 +14,10 @@ const useUserStore = create((set, get) => ({
 
 	handleApiResponse: (response, isLogin = false) => {
 		const data = response.data;
+		console.log(data.data);
 
 		if (data.sessionToken) {
-			set({ user: data.user, isAuthentified: true });
+			set({ user: data.data, isAuthentified: true });
 			Cookies.set("access_token", data.sessionToken);
 
 			// navigate to dashboard
