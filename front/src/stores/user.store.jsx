@@ -15,9 +15,9 @@ const useUserStore = create((set, get) => ({
 	handleApiResponse: (response, isLogin = false) => {
 		const data = response.data;
 
-		if (data.token) {
+		if (data.sessionToken) {
 			set({ user: data.user, isAuthentified: true });
-			Cookies.set("access_token", data.token);
+			Cookies.set("access_token", data.sessionToken);
 
 			// navigate to dashboard
 			if (isLogin) {
@@ -41,7 +41,7 @@ const useUserStore = create((set, get) => ({
 
 	login: async (email, password) => {
 		try {
-			const response = await ApiRequest.post("/users/login", {
+			const response = await ApiRequest.post("/auth/login", {
 				email,
 				password,
 			});
@@ -53,7 +53,7 @@ const useUserStore = create((set, get) => ({
 
 	register: async (dataUser) => {
 		try {
-			const response = await ApiRequest.post("/users/register", dataUser);
+			const response = await ApiRequest.post("/auth/register", dataUser);
 			return get().handleApiResponse(response);
 		} catch (error) {
 			return get().handleError();
@@ -62,7 +62,7 @@ const useUserStore = create((set, get) => ({
 
 	loginWithToken: async () => {
 		try {
-			const response = await ApiRequest.get("/users/me");
+			const response = await ApiRequest.get("/me");
 			return get().handleApiResponse(response, true);
 		} catch (error) {
 			return get().handleError();

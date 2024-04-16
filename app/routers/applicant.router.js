@@ -1,9 +1,8 @@
 const router = require('express').Router();
 const applicantController = require('../controllers/applicant.controller');
-const { validate } = require('../middlewares/validate.middleware');
-const { id } = require('../schemas/global.schema');
+const { loggedAs } = require('../middlewares/auth.middleware');
 
-router.get('/', applicantController.getAll);
-router.get('/:id', validate(id, 'params'), applicantController.getOne);
+router.get('/', loggedAs, applicantController.getAll);
+router.get('/:id', loggedAs, applicantController.getOne);
 
 module.exports = router;

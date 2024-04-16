@@ -1,21 +1,12 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const db = require('../models/config');
-
-// const user = db.User;
+const { user } = require('../models/index.mapper');
+const userService = require('./user.service');
 
 module.exports = {
 
   async login(email, password) {
-    const userExist = await db.User.findOne({
-      where: { email },
-      include: [
-        {
-          model: db.Role,
-          attributes: ['label'],
-        },
-      ],
-    });
+    const userExist = await user.findOne({ where: { email } });
     if (!userExist) {
       return {
         code: 403,
@@ -31,27 +22,9 @@ module.exports = {
       };
     }
     const { username } = userExist;
-    const userInfos = await db.User.findByPk(userExist.id, {
-      attributes:
-      {
-        exclude: ['password', 'id_ent', 'id_role'],
-      },
-      include: [
-        {
-          model: db.Role,
-          attributes: ['label', 'id'],
-        },
-        {
-          model: db.Ent,
-          attributes: ['id','name', "email", "siret"],
-        },
-      ],
-    });
-    let message = `Connecté sous ${username} !`;
-    // si delete_at est rempli on mets a jour la date de suppression par null
-    if (userExist.deleted_at) {
-      message = `Bon retour parmis nous ${username} !`;
-    }
+    const userInfos = await userService.getData(userExist.id);
+
+    const message = userExist.deleted_at ? `Bon retour parmis nous ${username} !` : `Connecté sous ${username} !`;
 
     // Création d'un token
     const token = jwt.sign({

@@ -10,26 +10,26 @@ const AuthPage = () => {
 
 	const store = useUserStore();
 
-	const [error, setError] = useState({
+	const [error] = useState({
 		firstName: "",
 		lastName: "",
-		userName: "",
+		username: "",
 		email: "",
 		password: "",
 		passwordConfirm: "",
 		siret: "",
-		role: "",
+		idRole: 2,
 	});
 
 	const [user, setUser] = useState({
 		firstName: "",
 		lastName: "",
-		userName: "",
+		username: "",
 		email: "",
 		password: "",
 		passwordConfirm: "",
 		siret: "",
-		role: "tech",
+		idRole: 2,
 	});
 
 	const handleChange = (e) => {
@@ -56,7 +56,7 @@ const AuthPage = () => {
 	const handleSubmitLogin = () => {
 		delete user.firstName;
 		delete user.lastName;
-		delete user.userName;
+		delete user.username;
 		delete user.passwordConfirm;
 		delete user.siret;
 		delete user.role;
@@ -98,12 +98,12 @@ const AuthPage = () => {
 								<Input
 									label="Pseudo"
 									type="text"
-									name="userName"
-									value={user.userName}
+									name="username"
+									value={user.username}
 									onChange={handleChange}
 									required
 									variant="primary"
-									error={error.userName}
+									error={error.username}
 								/>
 								<Input
 									label="Email"
@@ -150,8 +150,8 @@ const AuthPage = () => {
 										/>
 										<select
 											className="w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all border focus:border-2  text-sm px-3 py-2.5 rounded-[7px] border-blue-500 focus:border-blue-700 placeholder-shown:border-blue-500 placeholder-shown:border-t-blue-500"
-											name="role"
-											value={user.role}
+											name="idRole"
+											value={user.idRole}
 											onChange={handleChange}
 										>
 											<option value="tech">Tech</option>
@@ -185,7 +185,7 @@ const AuthPage = () => {
 										variant="primary"
 										onClick={handleSubmit}
 									>
-										S'inscrire
+										S&apos;inscrire
 									</Button>
 								</div>
 
@@ -196,7 +196,7 @@ const AuthPage = () => {
 								</div>
 
 								<Button variant="primary">
-									S'inscrire avec FranceConnect
+									S&apos;inscrire avec FranceConnect
 								</Button>
 							</>
 						) : (
@@ -225,7 +225,7 @@ const AuthPage = () => {
 										variant="secondary"
 										onClick={() => setSignIn(!signIn)}
 									>
-										S'inscrire
+										S&apos;inscrire
 									</Button>
 									<Button
 										variant="primary"

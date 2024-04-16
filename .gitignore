@@ -1,3 +1,5 @@
 /node_modules
-/Home-main
 /.vscode
+/.idea
+.vscode
+.env

@@ -10,7 +10,7 @@ const userRegister = Joi.object({
   siret: Joi.string().optional(),
   firstName: Joi.string().optional(),
   lastName: Joi.string().optional(),
-  status: Joi.number().required(),
+  status: Joi.number().optional(),
   // number or null
   idEnt: Joi.number().optional(),
 });

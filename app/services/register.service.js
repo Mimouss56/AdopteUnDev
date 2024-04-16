@@ -1,18 +1,20 @@
 const bcrypt = require('bcrypt');
-const db = require('../models/config');
+const { user } = require('../models/index.mapper');
+const userService = require('./user.service');
+const loginService = require('./login.service');
 
 module.exports = {
 
   async register(inputData) {
-    const userExist = await this.checkUserExist(inputData.email, inputData.username);
+    const userExist = await userService.checkUserExist(inputData.email, inputData.username);
 
-    if (userExist.emailExist) {
+    if (userExist.emailExist.length !== 0) {
       return {
         code: 400,
         message: 'Email already exist',
       };
     }
-    if (userExist.usernameExist) {
+    if (userExist.usernameExist.length !== 0) {
       return {
         code: 400,
         message: 'Username already exist',
@@ -24,31 +26,25 @@ module.exports = {
         message: 'Password and password confirm must be the same',
       };
     }
+
     // eslint-disable-next-line no-param-reassign
     delete inputData.passwordConfirm;
     // const newInput = {...inputData, }
-
+    const { passwordConfirm, token, ...newInput } = inputData;
     const hash = await bcrypt.hash(inputData.password, 10);
     try {
-      const data = await db.User.create({
-        ...inputData,
+      await user.create({
+        ...newInput,
         password: hash,
       });
-      return data;
+      const dataLogin = await loginService.login(inputData.email, inputData.password);
+      return dataLogin;
     } catch (error) {
       return {
         code: 500,
-        message: 'Erreur pendant la création du compte',
+        message: `Erreur pendant la création du compte :${error.message}`,
       };
     }
   },
-  async checkUserExist(email, username) {
-    const userExist = await db.User.findOne({ where: { email } });
-    const usernameExist = await db.User.findOne({ where: { username } });
-    return {
-      message: "utilisateur crée!",
-      emailExist: userExist,
-      usernameExist,
-    };
-  },
+
 };

@@ -1,10 +1,9 @@
-const bcrypt = require('bcrypt');
-const { task } = require('../models/task.model');
+const { task } = require('../models/index.mapper');
 // const roleService = require('./role.service');
 
 module.exports = {
 
-  //TODO : get one / get all
+  // TODO : get one / get all
 
   async getTask(id) {
     const taskByID = await task.findByPk(id);
@@ -14,17 +13,7 @@ module.exports = {
         message: 'User not found',
       };
     }
-    return userDetails;
+    return taskByID;
   },
 
-  async getAllTask() {
-    const allTasks = await Task.findAll();
-    if (!allTasks) {
-      return {
-        code: 404,
-        message: 'Tasks not found',
-      };
-    }
-    return allTasks;
-  },
 };
