@@ -11,10 +11,12 @@ module.exports = class Info extends CoreDatamapper {
   ];
 
   async getInfos(idUser) {
-    const query = `SELECT * FROM info WHERE id_user = ${idUser}`;
-    const [rows] = await this.client.execute(query);
-    if (rows.length === 0) return null;
-    const { id_user: ref, id, ...rest } = rows[0];
+    const preparedQuery = {
+      text: `SELECT * FROM "${this.tableName}" WHERE id_user = $1`,
+      values: [idUser],
+    };
+    const result = await this.client.query(preparedQuery);
+    const { id_user: ref, ...rest } = result;
     return rest;
   }
 };

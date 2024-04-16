@@ -1,4 +1,4 @@
-const client = require('./mysql.client');
+const client = require('./pg.client');
 
 const User = require('./user/user.mapper');
 const Role = require('./user/role.mapper');

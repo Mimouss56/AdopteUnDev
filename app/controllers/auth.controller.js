@@ -12,7 +12,7 @@ module.exports = {
 
   async register(req, res) {
     const {
-      email, username, password, passwordConfirm, idRole, token, siret,
+      email, username, password, passwordConfirm, idRole, siret,
     } = req.body;
     const inputData = {
       email,
@@ -20,9 +20,10 @@ module.exports = {
       password,
       passwordConfirm,
       id_role: idRole,
-      token,
-      siret,
     };
+    // si le siret est renseigné on l'ajoute à l'objet
+    if (siret) inputData.siret = siret;
+
     const data = await registerService.register(inputData);
     if (data.code) return res.status(data.code).json(data.message);
     return res.status(201).json({ message: 'Utilisateur créé', data });
