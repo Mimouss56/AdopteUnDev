@@ -4,7 +4,7 @@ const userService = require('../services/user.service');
 const loggedAs = async (req, res, next) => {
   if (!req.headers.authorization) {
     return res.status(401).json({
-      message: 'No token provided',
+      message: 'You are not logged',
     });
   }
   const [typetoken, token] = req.headers.authorization.split(' ');

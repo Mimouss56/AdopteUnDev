@@ -1,8 +1,28 @@
-const bcrypt = require('bcrypt');
-const { user } = require('../models/user/user.model');
+const { user } = require('../models/index.mapper');
 const roleService = require('./role.service');
+const entService = require('./ent.service');
+const infoUserService = require('./infoUser.service');
+
+const generateByDefault = async (data) => {
+  const {
+    password, id_role: idRole, id_ent: idEnt, ...rest
+  } = data;
+  const infoComplement = await infoUserService.getData(rest.id);
+  const role = await roleService.getData(idRole);
+  const ent = await entService.getData(idEnt);
+
+  return {
+    ...rest,
+    infoComplement,
+    role,
+    ent,
+  };
+};
 
 module.exports = {
+
+  // TODO : get all user with role applicant
+  // get all applicant information from an id list
 
   async getData(id) {
     const userByID = await user.findByPk(id);
@@ -12,26 +32,13 @@ module.exports = {
         message: 'User not found',
       };
     }
-    const role = await roleService.getData(userByID.role_id);
 
-    const userDetails = {
-      ...userByID,
-      role,
-    };
-    // delete userDetails.github_id;
-    delete userDetails.password;
-    delete userDetails.role_id;
+    const userDetails = generateByDefault(userByID);
     return userDetails;
   },
 
   async getAll() {
     const allUsers = await user.findAll();
-    if (!allUsers) {
-      return {
-        code: 404,
-        message: 'Users not found',
-      };
-    }
     const users = await Promise.all(
       allUsers.map(async (userInfo) => {
         const oneUser = await this.getData(userInfo.id);
@@ -41,51 +48,23 @@ module.exports = {
     return users;
   },
 
-  async update(id, inputQuery) {
-    const inputData = { ...inputQuery };
-    delete inputData.password;
-    delete inputData.passwordConfirm;
-    const userByID = await user.findByPk(id);
-    // Check if email not already exist in database
-    const emailExist = await user.findOne({ where: { email: inputData.email } });
-    if (emailExist && emailExist.id !== userByID.id) return { code: 409, message: 'Email already exist' };
-    // check if password exist in object
-    if (inputQuery.password !== undefined) {
-      // check if password and passwordConfirm are the same
-      if (inputQuery.password && inputQuery.password !== inputQuery.passwordConfirm) {
-        return ({
-          code: 409,
-          message: 'Le mot de passe et la confirmation doivent être identique',
-        });
-      }
-
-      // check if password and old password are the same
-      if (bcrypt.compareSync(inputQuery.password, userByID.password)) {
-        return ({
-          code: 409,
-          message: 'Le nouveau mot de passe doit être différent de l\'ancien',
-        });
-      }
-      inputData.password = bcrypt.hash(inputQuery.password, 10);
-    }
-
-    try {
-      const result = await user.update(userByID.id, inputData);
-      return { message: 'User updated', result };
-    } catch (error) {
-      return {
-        code: 500,
-        message: 'Error while updating user',
-      };
-    }
+  async getAllApplicant() {
+    const allUsers = await user.findAll({ where: { id_role: 1 } });
+    const users = await Promise.all(
+      allUsers.map(async (userInfo) => {
+        const oneUser = await this.getData(userInfo.id);
+        return oneUser;
+      }),
+    );
+    return users;
   },
 
   async checkUserExist(email, username) {
-    const userExist = {
-      emailExist: await user.findOne({ where: { email } }),
-      usernameExist: await user.findOne({ where: { username } }),
+    const userExist = await user.findOne({ where: { email } });
+    const usernameExist = await user.findOne({ where: { username } });
+    return {
+      emailExist: userExist,
+      usernameExist,
     };
-
-    return userExist;
   },
 };

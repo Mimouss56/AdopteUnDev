@@ -27,7 +27,9 @@ const CreationTree = ({ isOpen, onClose }) => {
 				isOpen ? " scale-100 " : "scale-0"
 			} transition-all duration-500 ease-in-out`}
 		>
-			<h1 className="text-2xl font-bold mb-4">Création tree</h1>
+			<h1 className="text-2xl font-bold mb-4">
+				Création d'un arbre de compétence
+			</h1>
 			<Input label="Nom de l'arbre" />
 			<div className="mb-4">
 				<Input
@@ -61,7 +63,7 @@ const CreationTree = ({ isOpen, onClose }) => {
 				</div>
 			</div>
 			<div className="mb-4">
-				<h2 className="font-semibold mb-2">Mes hardskill ajoutées</h2>
+				<h2 className="font-semibold mb-2">Mes compétences ajoutées</h2>
 				<div className="flex flex-wrap">
 					{skills.map((skill) => (
 						<div key={skill} className="flex items-center m-1">
@@ -118,7 +120,7 @@ const Tech = ({ role }) => {
 					<Card className="h-full w-full">
 						<div className=" flex flex-col justify-center items-center w-full gap-4 p-4">
 							<h2 className="text-xl font-semibold">
-								Gestion des arbres de competence
+								Gestion des arbres de compétences
 							</h2>
 							<div className="flex gap-4 w-full">
 								<div className="bg-slate-200 rounded-lg p-4 w-full flex flex-col justify-start items-center">
@@ -149,18 +151,18 @@ const Tech = ({ role }) => {
 						<Card className="h-full w-full">
 							<div className=" flex flex-col justify-start items-center w-full p-4">
 								<h2 className="text-xl font-semibold">
-									Gestion des Competances
+									Gestion des Compétences
 								</h2>
 								<div className="flex flex-col gap-4 w-full p-4">
 									<div className="bg-slate-200 rounded-lg p-4 w-full flex flex-col justify-start items-center">
 										<h3 className="text-xl font-semibold">
-											Competances de FranceTravail
+											Compétences de FranceTravail
 										</h3>
 									</div>
 									<div className="bg-slate-200 rounded-lg p-4 w-full flex flex-col justify-start items-center ">
 										<div className="flex justify-between items-center w-full">
 											<h3 className="text-xl font-semibold">
-												Competances de votre entreprise
+												Compétences de votre entreprise
 											</h3>
 											<Button onClick={() => {}}>
 												Créer un arbre
@@ -175,18 +177,18 @@ const Tech = ({ role }) => {
 						<Card className="h-full w-full">
 							<div className=" flex flex-col justify-center items-center w-full p-4">
 								<h2 className="text-xl font-semibold">
-									Gestion des taches
+									Gestion des tâches
 								</h2>
 								<div className="flex flex-col gap-4 w-full p-4">
 									<div className="bg-slate-200 rounded-lg p-4 w-full flex flex-col justify-start items-center">
 										<h3 className="text-xl font-semibold">
-											Tache de FranceTravail
+											Tâches de FranceTravail
 										</h3>
 									</div>
 									<div className="bg-slate-200 rounded-lg p-4 w-full flex flex-col justify-start items-center ">
 										<div className="flex justify-between items-center w-full">
 											<h3 className="text-xl font-semibold">
-												Tache de votre entreprise
+												Tâches de votre entreprise
 											</h3>
 											<Button onClick={() => {}}>
 												Créer un arbre
